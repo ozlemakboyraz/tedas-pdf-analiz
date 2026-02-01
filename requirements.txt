@@ -1,0 +1,8 @@
+streamlit
+pandas
+pdf2image
+openai
+python-dotenv
+plotly
+streamlit-aggrid
+openpyxl
