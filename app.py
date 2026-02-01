@@ -405,7 +405,7 @@ if analyze_btn and api_key and excel_file and pdf_file:
 
                 
                 response = client.chat.completions.create(
-                    model="gpt-4-turbo",
+                    model="gpt-4o",
                     messages=[{"role": "user", "content": [{"type": "text", "text": prompt}] + [{"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{b}"}} for b in b64_batch]}],
                     response_format={"type": "json_object"}
                 )
@@ -666,3 +666,4 @@ if 'final_results' in st.session_state:
             if 0 <= p_idx < len(st.session_state.get('pdf_pages', [])):
 
                 st.image(st.session_state['pdf_pages'][p_idx], use_container_width=True, caption=f"Sayfa Kanıtı: {row['sayfa']}")
+
