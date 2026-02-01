@@ -405,7 +405,7 @@ if analyze_btn and api_key and excel_file and pdf_file:
 
                 
                 response = client.chat.completions.create(
-                    model="gpt-4o",
+                    model="gpt-4-turbo",
                     messages=[{"role": "user", "content": [{"type": "text", "text": prompt}] + [{"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{b}"}} for b in b64_batch]}],
                     response_format={"type": "json_object"}
                 )
@@ -466,7 +466,7 @@ if 'final_results' in st.session_state:
 
     # --- 3. AgGrid: Uzman Onay Tablosu ---
     st.markdown("### 📋 Denetim Sonuç Listesi & Uzman Onayı")
-    st.info("💡 **Uzman Talimatı: Kanıtı incelemek için satıra tıklayın.**")
+    st.info("💡 **Uzman Talimatı: Kanıtı incelemek için satıra tıklayın.Onaylamak için 'Uzman Onayı' kutucuğunu işaretleyin.**")
 
     # Veriyi hazırlarken session_state'i ana kaynak yap
     res_df = pd.DataFrame(st.session_state['final_results'])
@@ -664,4 +664,5 @@ if 'final_results' in st.session_state:
         with col_img:
             p_idx = int(row['sayfa']) - 1
             if 0 <= p_idx < len(st.session_state.get('pdf_pages', [])):
+
                 st.image(st.session_state['pdf_pages'][p_idx], use_container_width=True, caption=f"Sayfa Kanıtı: {row['sayfa']}")
